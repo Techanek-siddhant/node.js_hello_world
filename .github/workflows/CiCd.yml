@@ -1,5 +1,4 @@
-name: Build Image & Push in dockerhub CI 
-
+name: Build Image & Push in dockerhub CI CD
 on:
   push:
     branches: [ "main" ]
