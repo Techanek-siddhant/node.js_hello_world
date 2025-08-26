@@ -10,7 +10,7 @@ jobs:
 
   build:
   
-    name: Build
+    name: Build-docker
     runs-on: ubuntu-latest
 
     steps:
