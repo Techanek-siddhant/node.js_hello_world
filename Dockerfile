@@ -5,4 +5,4 @@ COPY package*.json ./
 COPY server.js ./
 
 EXPOSE 3000
-MD ["node", "server.js"]
+CMD ["node", "server.js"]
