@@ -25,42 +25,14 @@ jobs:
 
 
       - name: Slack Notification
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           steps : ${{ toJson(steps) }}
           channel: '#gitaction-cicd'
           payload: |
             {
-              "attachments": [
-                {
-                  "color": "${{ job.status == 'success' && 'good' || 'danger' }}",
-                  "fields": [
-                    {
-                      "title": "Repository",
-                      "value": "${{ github.repository }}",
-                      "short": true
-                    },
-                    {
-                      "title": "Branch",
-                      "value": "${{ github.ref_name }}",
-                      "short": true
-                    },
-                    {
-                      "title": "Commit",
-                      "value": "${{ github.sha }}",
-                      "short": false
-                    },
-                    {
-                      "title": "Link of Docker Hub",
-                      "value": "https://hub.docker.com/r/sidtechanek/nodejs",
-                      "short": false
-                    }
-                  ],
-                  "footer": "GitHub Actions",
-                  "ts": "${{ github.event.head_commit.timestamp }}"
-                }
-              ]
+              "text": "link for docker image: https://hub.docker.com/r/sidtechanek/nodejs"
             }
         if : always()
         env:
