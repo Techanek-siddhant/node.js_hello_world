@@ -3,9 +3,7 @@ name: Docker Image & Push in dockerhub CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+    
 jobs:
 
   build:
@@ -19,8 +17,13 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
 
+  Deploy:
+    name: Push to dockerhub
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - name: Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
+      uses: push-docker-image@v2.0.0
       with:
         image: sidtechanek/nodejs
         registry: docker.io
