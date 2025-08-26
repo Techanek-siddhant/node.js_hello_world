@@ -3,7 +3,7 @@ name: Docker Image & Push in dockerhub CI
 on:
   push:
     branches: [ "main" ]
-    
+
 jobs:
 
   build:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Push Docker Image
-      uses: push-docker-image@v2.0.0
+      uses: peter-evans/dockerhub-publish@v2
       with:
         image: sidtechanek/nodejs
         registry: docker.io
