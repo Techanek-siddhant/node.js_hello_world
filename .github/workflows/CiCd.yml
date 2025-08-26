@@ -59,4 +59,4 @@ jobs:
           context: .
           push: true
 
-          tags: sidtechanek/nodejs:${{ github.ref_name }} 
+          tags: sidtechanek/nodejs:${{ github.commit.hash }} 
