@@ -30,7 +30,38 @@ jobs:
           status: ${{ job.status }}
           steps : ${{ toJson(steps) }}
           channel: '#gitaction-cicd'
-          message: 'Node.js Docker Image CI/CD Link of Docker Hub: https://hub.docker.com/r/sidtechanek/nodejs'
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "${{ job.status == 'success' && 'good' || 'danger' }}",
+                  "fields": [
+                    {
+                      "title": "Repository",
+                      "value": "${{ github.repository }}",
+                      "short": true
+                    },
+                    {
+                      "title": "Branch",
+                      "value": "${{ github.ref_name }}",
+                      "short": true
+                    },
+                    {
+                      "title": "Commit",
+                      "value": "${{ github.sha }}",
+                      "short": false
+                    },
+                    {
+                      "title": "Link of Docker Hub",
+                      "value": "https://hub.docker.com/r/sidtechanek/nodejs",
+                      "short": false
+                    }
+                  ],
+                  "footer": "GitHub Actions",
+                  "ts": "${{ github.event.head_commit.timestamp }}"
+                }
+              ]
+            }
         if : always()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
