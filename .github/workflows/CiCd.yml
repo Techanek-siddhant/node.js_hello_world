@@ -59,4 +59,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: sidtechanek/nodejs:${{ github.commit.hash }}
+          tags: sidtechanek/nodejs:${{ github.sha }}
