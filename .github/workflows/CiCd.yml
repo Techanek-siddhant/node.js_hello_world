@@ -23,3 +23,15 @@ jobs:
           push: true
           tags: sidtechanek/nodejs:${{ github.sha }}
 
+      - name: Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          steps : ${{ toJson(steps) }}
+          give me docker hub image link: true
+          mention: 'here'
+          channel: '#gitaction-cicd'
+        if : always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
